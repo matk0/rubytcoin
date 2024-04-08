@@ -6,3 +6,9 @@ Style/StringLiterals:
   EnforcedStyle: double_quotes
 Style/MethodDefParentheses:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Style/AndOr:
+  Enabled: false
