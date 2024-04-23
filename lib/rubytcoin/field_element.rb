@@ -42,8 +42,8 @@ class FieldElement
     FieldElement.new((@number * other.number) % @prime, @prime)
   end
 
-  def ** exponent
-    n = exponent % (@prime - 1)
+  def ** other
+    n = other % (@prime - 1)
     FieldElement.new(@number.pow(n, @prime), @prime)
   end
 

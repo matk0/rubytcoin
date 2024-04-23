@@ -2,10 +2,13 @@ class Point
   attr_reader :x, :y, :a, :b
 
   def initialize x, y, a, b
-    @x, @y, @a, @b = x, y, a, b
+    @x = x
+    @y = y
+    @a = a
+    @b = b
 
     return if @x.nil? and @y.nil?
-    raise "#{@x} and #{@y} are not on the curve" unless @y**2 == @x**3 + @a*@x + @b
+    raise "#{@x} and #{@y} are not on the curve" unless @y**2 == (@x**3) + (@a * @x) + @b
   end
 
   def == other
@@ -30,14 +33,16 @@ class Point
     end
 
     if self == other
-      s = ((3 * @x**2) + @a) / (2 * @y)
-      x = (s**2) - 2 * @x
+      s = ((3 * (@x**2)) + @a) / (2 * @y)
+      x = (s**2) - (2 * @x)
       y = (s * (@x - x)) - @y
       return Point.new(x, y, @a, @b)
     end
 
+    # Identity (I + A = A (I is 0): @x being nil means that self is the point at infinity, or the additive identity (0), thus we return other
     return other if @x.nil?
 
+    # other.x being nil means that the other is the point at infinity (0), thus we return self
     self if other.x.nil?
   end
 end
